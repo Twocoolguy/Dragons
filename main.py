@@ -35,6 +35,7 @@ class GUI:
         print(f"Welcome to Dragons {self.config_reader.version} in Python. Type help to see all commands.")
         user = User("default", self.config_reader)
         user.get_dragons()
+        print("If you press enter after some of the fights you will be able to repeat them without re-entering data.")
         while True:
             if user.name != "default":
                 user.get_achievements()

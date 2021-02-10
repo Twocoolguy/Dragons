@@ -1,0 +1,4 @@
+Win7
+true
+D7
+B7

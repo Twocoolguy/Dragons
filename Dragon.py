@@ -60,6 +60,21 @@ class Dragon:
                 return move
         return None
 
+    def get_strong_move(self):
+        """Gets the strongest move that this Dragon can use. This means by level required to unlock."""
+        self.check_moves_and_forms(self.config_reader)
+        strong_move = None
+        for move in self.moves:
+            if strong_move is None:
+                strong_move = move
+                continue
+            if move.level_needed > strong_move.level_needed:
+                strong_move = move
+            elif move.level_needed == strong_move.level_needed:
+                if move.damage > strong_move.damage:
+                    strong_move = move
+        return strong_move
+
     def get_random_move(self):
         """Returns a random move from the moveset the dragon has."""
         self.check_moves_and_forms(self.config_reader)  # Get the moves that they have access to.

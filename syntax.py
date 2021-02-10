@@ -9,7 +9,7 @@ if path == "inthisfolder":
     config = os.getcwd().replace("\\", "/") + "/Config/"
 else:
     config = path.replace("\\", "/")
-    if config[-1] is not "/":
+    if config[-1] != "/":
         config += "/"
 config_files = os.listdir(config)
 for config_file in config_files:

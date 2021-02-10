@@ -238,4 +238,82 @@ class ConfigReader:
                 return boss3
         return None
 
+    def set_boss_health_mult(self, number):
+        """Sets the boss health multiplier number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/bosshealthmultiplier.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set boss health multiplier from {self.bosshealth_multiplier} to {number}!")
+
+    def set_exp_calc_mult(self, number):
+        """Sets the exp calc multiplier number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/expcalcmultiplier.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set exp calc multiplier from {self.exp_multi} to {number}!")
+
+    def _set_fontsize(self, number):
+        """Sets the fontsize number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/fontsize.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set font size from {self.font_size} to {number}!")
+
+    def set_health_multi(self, number):
+        """Sets the health multiplier number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/healthmultiplier.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set health multiplier from {self.health_multi} to {number}!")
+
+    def set_max_prestige(self, number):
+        """Sets the max prestige number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/maxprestige.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set max prestige from {self.max_prestige} to {number}!")
+
+    def isElement(self, element):
+        """Checks if the element parameter is an element already."""
+        for ele in self.elements:
+            if element == ele:
+                return True
+        return False
+
+    def isForm(self, element, form):
+        """Checks if the given form is already a thing in the given element."""
+        for f in self.forms:
+            if f.element == element:
+                if f.name == form:
+                    return True
+        return False
+
+    def isMove(self, element, move_name):
+        """Checks with the given information if this is already a move."""
+        for move in self.moves:
+            if move.name == move_name:
+                if element == move.element:
+                    return True
+        return False
+
+    def create_form(self, element, form_name, form_mult, form_levelreq):
+        """Creates a form with the given info."""
+        form = Form(form_name, form_mult, form_levelreq, element)
+        form_path = f"{self.config_path}/Forms/{element}/{form_name}.txt"
+        FileActions.create_file(form_path)
+        FileActions.overwrite_file_lines(form_path, form.get_file_lines()["lines"])
+        print("Created form!")
+
+    def create_move(self, name, element, damage, accuracy, level_needed, unlock):
+        """Creates a move with the given info."""
+        move = Move(name, element, damage, accuracy, level_needed, unlock)
+        move_path = f"{self.config_path}/Moves/{name}.txt"
+        FileActions.create_file(move_path)
+        FileActions.overwrite_file_lines(move_path, move.get_file_lines()["lines"])
+        print("Created move!")
 # cr = ConfigReader("C:/Users/TurtlesAreHot/Desktop/Dragons e/Config")

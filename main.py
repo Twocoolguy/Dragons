@@ -823,7 +823,7 @@ class GUI:
                 if drag_form == "q":
                     continue
                 while True:
-                    drag_move = input("Move (q to quit): ")
+                    drag_move = input("Move (Hit enter to use the strongest move) (q to quit): ")
                     if drag_move == "q":
                         break
                     if drag_move == "":

@@ -1,0 +1,6 @@
+earthram
+earth
+100
+75
+600
+0

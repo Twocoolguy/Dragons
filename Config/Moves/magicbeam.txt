@@ -1,0 +1,6 @@
+magicbeam
+magic
+150
+45
+1000
+0

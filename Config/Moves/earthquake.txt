@@ -1,0 +1,6 @@
+earthquake
+earth
+60
+80
+300
+0

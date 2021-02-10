@@ -1,0 +1,6 @@
+earthwall
+earth
+45
+80
+150
+0

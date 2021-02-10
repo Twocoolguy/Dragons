@@ -1,0 +1,6 @@
+magicslash
+magic
+120
+45
+600
+0

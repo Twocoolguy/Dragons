@@ -1,0 +1,6 @@
+earthmetor
+earth
+140
+80
+1200
+0

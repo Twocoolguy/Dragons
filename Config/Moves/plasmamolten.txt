@@ -1,0 +1,6 @@
+plasmamolten
+plasma
+200
+25
+1200
+0

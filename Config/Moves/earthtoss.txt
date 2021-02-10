@@ -1,0 +1,6 @@
+earthtoss
+earth
+70
+80
+400
+0

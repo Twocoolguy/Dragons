@@ -1,0 +1,6 @@
+magicaura
+magic
+200
+25
+1400
+0

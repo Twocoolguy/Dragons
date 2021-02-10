@@ -1,0 +1,6 @@
+magicstorm
+magic
+90
+50
+400
+0

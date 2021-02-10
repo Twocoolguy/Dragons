@@ -1,0 +1,6 @@
+firewing
+fire
+65
+70
+300
+0

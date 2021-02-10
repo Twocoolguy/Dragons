@@ -1,0 +1,6 @@
+magicsword
+magic
+45
+65
+35
+0

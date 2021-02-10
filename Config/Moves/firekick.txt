@@ -1,0 +1,6 @@
+firekick
+fire
+50
+75
+150
+0

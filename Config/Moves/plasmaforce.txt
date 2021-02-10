@@ -1,0 +1,6 @@
+plasmaforce
+plasma
+130
+40
+600
+0

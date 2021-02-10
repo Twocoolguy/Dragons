@@ -1132,7 +1132,7 @@ if __name__ == "__main__":
     if config_loc_lines[0] == "inthisfolder":
         g = GUI(os.getcwd().replace("\\", "/") + "/Config")
     else:
-        g = GUI(config_loc_lines[0])
+        g = GUI(config_loc_lines[0].replace("\\", "/"))
     g.start()
 else:
     raise RunMustBeByMainError

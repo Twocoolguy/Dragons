@@ -1,0 +1,4 @@
+Snake
+38000
+fireball
+25

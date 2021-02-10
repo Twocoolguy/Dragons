@@ -1,0 +1,4 @@
+Scales
+1500
+multi element super beam
+10

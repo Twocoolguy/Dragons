@@ -27,6 +27,7 @@ class GUI:
         move_s = None
         drag_s = None
         form_s = None
+        use_strong = False
         formes = []
         drages = []
         movees = []
@@ -825,7 +826,10 @@ class GUI:
                     drag_move = input("Move (q to quit): ")
                     if drag_move == "q":
                         break
-                    move = drag.get_move(drag_move)
+                    if drag_move == "":
+                        move = drag.get_strong_move()
+                    else:
+                        move = drag.get_move(drag_move)
                     if move is None:
                         print(f"The move with the name {drag_move} does not exist under this dragon or this dragon cannot use this move. Please try again.")
                         continue
@@ -836,6 +840,10 @@ class GUI:
                 drag_s = drag
                 move_s = move
                 form_s = form
+                if drag_move == "":
+                    use_strong = True
+                else:
+                    use_strong = False
                 last_cmd_special = True
                 start_fight(drag, move, form, cpu, cpu.get_random_move(), cpu.get_random_form(), False, user)
             elif command == "boss":
@@ -1083,8 +1091,11 @@ class GUI:
                 if last_cmd_special:
                     if old_cmd == "fight":
                         n_drag = user.get_dragon(drag_s.name)
+                        mv = move_s
+                        if use_strong:
+                            mv = n_drag.get_strong_move()
                         cpu = gen_rand(n_drag.level, n_drag.prestige, self.config_reader)
-                        start_fight(n_drag, move_s, form_s, cpu, cpu.get_random_move(), cpu.get_random_form(), False, user)
+                        start_fight(n_drag, mv, form_s, cpu, cpu.get_random_move(), cpu.get_random_form(), False, user)
                     elif old_cmd == "boss":
                         n_drag = user.get_dragon(drag_s.name)
                         boss = self.config_reader.get_boss(n_drag.boss_number)

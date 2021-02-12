@@ -1,5 +1,5 @@
-# Dragons v1.0.0
-This is the open source code for Dragons v1.0.0.
+# Dragons v1.1.0
+This is the open source code for Dragons v1.1.0.
 
 Python 3.7+ Required
 Install it here: https://www.python.org/downloads/release/python-379/

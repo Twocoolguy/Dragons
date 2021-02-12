@@ -11,7 +11,7 @@ class Achievement:
         str_numbers = ""
         if len(self.actions) > 1:
             str_actions = ",".join(self.actions)
-            str_numbers = ",".join(self.numbers)
+            str_numbers = ",".join([str(n) for n in self.numbers])
         else:
             str_actions = self.actions[0]
             str_numbers = self.numbers[0]

@@ -1,3 +1,5 @@
+import os
+
 import FileActions
 from Moves import Move
 from Form import Form
@@ -316,4 +318,87 @@ class ConfigReader:
         FileActions.create_file(move_path)
         FileActions.overwrite_file_lines(move_path, move.get_file_lines()["lines"])
         print("Created move!")
+
+    def isBossMove(self, name):
+        """Checks if the given name is a boss move."""
+        boss_movepath = f"{self.config_path}/DragonBosses/Moves/{name}.txt"
+        if os.path.exists(boss_movepath):
+            return True
+        return False
+
+    def get_new_boss_number(self):
+        """Fetches the next possible boss number."""
+        boss_path = f"{self.config_path}/DragonBosses/"
+        return len(os.listdir(boss_path))
+
+    def get_boss_move(self, name):
+        """Gets the boss move with the given name. If it does not exists returns none"""
+        for mv in self.boss_moves:
+            if mv.name == name:
+                return mv
+        return None
+
+    def create_boss(self, name, level, move, unlock):
+        """This creates a new boss file."""
+        boss = Boss(name, level, self.get_boss_move(move), unlock)
+        boss_path = f"{self.config_path}/DragonBosses/{unlock}.txt"
+        FileActions.create_file(boss_path)
+        FileActions.overwrite_file_lines(boss_path, boss.get_file_lines()["lines"])
+        print("Created boss!")
+
+    def isBossMove3(self, name):
+        """Checks if the given name is a boss3 move"""
+        boss3_movepath = f"{self.config_path}/DragonBosses3/Moves/{name}.txt"
+        if os.path.exists(boss3_movepath):
+            return True
+        return False
+
+    def get_new_boss3_number(self):
+        """Fetches the next possible boss3 number."""
+        boss3_path = f"{self.config_path}/DragonBosses3/"
+        return len(os.listdir(boss3_path))
+
+    def get_boss3_move(self, name):
+        """Gets the boss move with the given name. If it does not exists returns none"""
+        for mv in self.boss_moves3:
+            if mv.name == name:
+                return mv
+        return None
+
+    def create_boss3(self, name, level, move, unlock):
+        """This creates a new boss3 file."""
+        boss = Boss(name, level, self.get_boss3_move(move), unlock)
+        boss_path = f"{self.config_path}/DragonBosses3/{unlock}.txt"
+        FileActions.create_file(boss_path)
+        FileActions.overwrite_file_lines(boss_path, boss.get_file_lines()["lines"])
+        print("Created boss3!")
+
+    def create_boss_move(self, name, damage, accuracy):
+        """This creates a new boss move file."""
+        boss_move = BossMove(name, damage, accuracy)
+        boss_move_path = f"{self.config_path}/DragonBosses/Moves/{name}.txt"
+        FileActions.create_file(boss_move_path)
+        FileActions.overwrite_file_lines(boss_move_path, boss_move.get_file_lines()["lines"])
+        print("Created boss move!")
+
+    def create_boss3_move(self, name, damage, accuracy):
+        """This creates a new boss3 move file."""
+        boss_move = BossMove(name, damage, accuracy)
+        boss_move_path = f"{self.config_path}/DragonBosses3/Moves/{name}.txt"
+        FileActions.create_file(boss_move_path)
+        FileActions.overwrite_file_lines(boss_move_path, boss_move.get_file_lines()["lines"])
+        print("Created boss3 move!")
+
+    def get_next_ach_number(self):
+        """This gets the next number achievements"""
+        return len(self.achievements) + 1
+
+    def create_achievement(self, actions, numbers, message):
+        """This creates a new achievement file."""
+        ach_number = self.get_next_ach_number()
+        ach = Achievement(actions, numbers, message, ach_number)
+        ach_path = f"{self.config_path}/Achievements/{ach_number}.txt"
+        FileActions.create_file(ach_path)
+        FileActions.overwrite_file_lines(ach_path, ach.get_file_lines()["lines"])
+        print("Created new achievement!")
 # cr = ConfigReader("C:/Users/TurtlesAreHot/Desktop/Dragons e/Config")

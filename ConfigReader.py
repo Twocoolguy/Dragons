@@ -1,3 +1,5 @@
+import os
+
 import FileActions
 from Moves import Move
 from Form import Form
@@ -238,4 +240,165 @@ class ConfigReader:
                 return boss3
         return None
 
+    def set_boss_health_mult(self, number):
+        """Sets the boss health multiplier number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/bosshealthmultiplier.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set boss health multiplier from {self.bosshealth_multiplier} to {number}!")
+
+    def set_exp_calc_mult(self, number):
+        """Sets the exp calc multiplier number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/expcalcmultiplier.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set exp calc multiplier from {self.exp_multi} to {number}!")
+
+    def _set_fontsize(self, number):
+        """Sets the fontsize number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/fontsize.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set font size from {self.font_size} to {number}!")
+
+    def set_health_multi(self, number):
+        """Sets the health multiplier number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/healthmultiplier.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set health multiplier from {self.health_multi} to {number}!")
+
+    def set_max_prestige(self, number):
+        """Sets the max prestige number. This is only used for create.py"""
+        err = FileActions.overwrite_file(self.config_path + "/Other/maxprestige.txt", str(number))
+        if err == -1:
+            print("File location not found. There may be an issue with your config.")
+        else:
+            print(f"Set max prestige from {self.max_prestige} to {number}!")
+
+    def isElement(self, element):
+        """Checks if the element parameter is an element already."""
+        for ele in self.elements:
+            if element == ele:
+                return True
+        return False
+
+    def isForm(self, element, form):
+        """Checks if the given form is already a thing in the given element."""
+        for f in self.forms:
+            if f.element == element:
+                if f.name == form:
+                    return True
+        return False
+
+    def isMove(self, element, move_name):
+        """Checks with the given information if this is already a move."""
+        for move in self.moves:
+            if move.name == move_name:
+                if element == move.element:
+                    return True
+        return False
+
+    def create_form(self, element, form_name, form_mult, form_levelreq):
+        """Creates a form with the given info."""
+        form = Form(form_name, form_mult, form_levelreq, element)
+        form_path = f"{self.config_path}/Forms/{element}/{form_name}.txt"
+        FileActions.create_file(form_path)
+        FileActions.overwrite_file_lines(form_path, form.get_file_lines()["lines"])
+        print("Created form!")
+
+    def create_move(self, name, element, damage, accuracy, level_needed, unlock):
+        """Creates a move with the given info."""
+        move = Move(name, element, damage, accuracy, level_needed, unlock)
+        move_path = f"{self.config_path}/Moves/{name}.txt"
+        FileActions.create_file(move_path)
+        FileActions.overwrite_file_lines(move_path, move.get_file_lines()["lines"])
+        print("Created move!")
+
+    def isBossMove(self, name):
+        """Checks if the given name is a boss move."""
+        boss_movepath = f"{self.config_path}/DragonBosses/Moves/{name}.txt"
+        if os.path.exists(boss_movepath):
+            return True
+        return False
+
+    def get_new_boss_number(self):
+        """Fetches the next possible boss number."""
+        boss_path = f"{self.config_path}/DragonBosses/"
+        return len(os.listdir(boss_path))
+
+    def get_boss_move(self, name):
+        """Gets the boss move with the given name. If it does not exists returns none"""
+        for mv in self.boss_moves:
+            if mv.name == name:
+                return mv
+        return None
+
+    def create_boss(self, name, level, move, unlock):
+        """This creates a new boss file."""
+        boss = Boss(name, level, self.get_boss_move(move), unlock)
+        boss_path = f"{self.config_path}/DragonBosses/{unlock}.txt"
+        FileActions.create_file(boss_path)
+        FileActions.overwrite_file_lines(boss_path, boss.get_file_lines()["lines"])
+        print("Created boss!")
+
+    def isBossMove3(self, name):
+        """Checks if the given name is a boss3 move"""
+        boss3_movepath = f"{self.config_path}/DragonBosses3/Moves/{name}.txt"
+        if os.path.exists(boss3_movepath):
+            return True
+        return False
+
+    def get_new_boss3_number(self):
+        """Fetches the next possible boss3 number."""
+        boss3_path = f"{self.config_path}/DragonBosses3/"
+        return len(os.listdir(boss3_path))
+
+    def get_boss3_move(self, name):
+        """Gets the boss move with the given name. If it does not exists returns none"""
+        for mv in self.boss_moves3:
+            if mv.name == name:
+                return mv
+        return None
+
+    def create_boss3(self, name, level, move, unlock):
+        """This creates a new boss3 file."""
+        boss = Boss(name, level, self.get_boss3_move(move), unlock)
+        boss_path = f"{self.config_path}/DragonBosses3/{unlock}.txt"
+        FileActions.create_file(boss_path)
+        FileActions.overwrite_file_lines(boss_path, boss.get_file_lines()["lines"])
+        print("Created boss3!")
+
+    def create_boss_move(self, name, damage, accuracy):
+        """This creates a new boss move file."""
+        boss_move = BossMove(name, damage, accuracy)
+        boss_move_path = f"{self.config_path}/DragonBosses/Moves/{name}.txt"
+        FileActions.create_file(boss_move_path)
+        FileActions.overwrite_file_lines(boss_move_path, boss_move.get_file_lines()["lines"])
+        print("Created boss move!")
+
+    def create_boss3_move(self, name, damage, accuracy):
+        """This creates a new boss3 move file."""
+        boss_move = BossMove(name, damage, accuracy)
+        boss_move_path = f"{self.config_path}/DragonBosses3/Moves/{name}.txt"
+        FileActions.create_file(boss_move_path)
+        FileActions.overwrite_file_lines(boss_move_path, boss_move.get_file_lines()["lines"])
+        print("Created boss3 move!")
+
+    def get_next_ach_number(self):
+        """This gets the next number achievements"""
+        return len(self.achievements) + 1
+
+    def create_achievement(self, actions, numbers, message):
+        """This creates a new achievement file."""
+        ach_number = self.get_next_ach_number()
+        ach = Achievement(actions, numbers, message, ach_number)
+        ach_path = f"{self.config_path}/Achievements/{ach_number}.txt"
+        FileActions.create_file(ach_path)
+        FileActions.overwrite_file_lines(ach_path, ach.get_file_lines()["lines"])
+        print("Created new achievement!")
 # cr = ConfigReader("C:/Users/TurtlesAreHot/Desktop/Dragons e/Config")

@@ -4,7 +4,13 @@ errs = []
 print("Checking for Syntax Errors...")
 with open("config_loc.txt", "r") as f:
     path = f.readline()
-config = f"{path}/Config/"
+config = ""
+if path == "inthisfolder":
+    config = os.getcwd().replace("\\", "/") + "/Config/"
+else:
+    config = path.replace("\\", "/")
+    if config[-1] != "/":
+        config += "/"
 config_files = os.listdir(config)
 for config_file in config_files:
     if "." in config_file:

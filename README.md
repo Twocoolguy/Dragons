@@ -19,3 +19,4 @@ Run "Config Editor" to add new stuff to the config and change some settings. You
 - Fixed a bug when you leveled up more than 2 tiems in a single fight it would not tell you how many levels you gained.
 - Fixed a grammar issue saying that was "Your dragon leveled up {times} times and is now level {level}!" to "Your dragon leveled up {times} times and is now level {level}!".
 - Added some functions for future updates.
+- Removed some unused functions/comments from the GUI class.

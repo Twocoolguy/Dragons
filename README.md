@@ -16,3 +16,5 @@ Run "Config Editor" to add new stuff to the config and change some settings. You
 1.1.1 Patch Notes:
 - Fixed a bug when you were max level you could not get to the next boss/boss3 even if you won.
 - Fixed a bug where sometimes you would get exp when you lost to a boss/boss3 when you shouldn't.
+- Fixed a bug when you leveled up more than 2 tiems in a single fight it would not tell you how many levels you gained.
+- Fixed a grammar issue saying that was "Your dragon leveled up {times} times and is now level {level}!" to "Your dragon leveled up {times} times and is now level {level}!".

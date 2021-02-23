@@ -15,12 +15,6 @@ class RunMustBeByMainError(Exception):
 class GUI:
     def __init__(self, config_location):
         self.config_reader = ConfigReader(config_location)
-        self._setup()
-
-    def _setup(self):
-        """Helps setup Commandline."""
-        # Font setup will be available in the future.
-        return None
 
     def start(self):
         last_cmd_special = False
@@ -41,7 +35,6 @@ class GUI:
                 user.get_achievements()
             user.get_dragons()
             command = input("Command (q to quit): ")
-            args = []
             if command != "boss" and command != "fight" and command != "boss3" and command != "":
                 last_cmd_special = False
                 move_s = None
@@ -50,9 +43,6 @@ class GUI:
                 movees = []
                 drages = []
                 formes = []
-            if " " in command:
-                args = command.split(" ")
-                args.pop(0)
             if command == "q":
                 print("q Exit.")
                 exit(0)
@@ -1122,10 +1112,6 @@ class GUI:
             if command != "":
                 old_cmd = command
 
-
-"""Commands to add:
-creator PROGRAM
-"""
 
 if __name__ == "__main__":
     config_loc_lines = FileActions.get_lines("config_loc.txt")

@@ -117,8 +117,8 @@ class Dragon:
                 print("Your dragon did not level up.")
         if times == 1:
             print(f"Your dragon leveled up 1 time and is now level {level}!")
-        if times == 2:
-            print(f"Your dragon level up {times} times and is now level {level}!")
+        if times >= 2:
+            print(f"Your dragon leveled up {times} times and is now level {level}!")
         self.exp += exp
         self.level = level
         return 0

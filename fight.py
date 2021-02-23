@@ -83,7 +83,10 @@ def start_fight(dragon1, dragon1_move, dragon1_form, dragon2, dragon2_move, drag
         err = dragon1.gain_exp(exp_gain)
     if err != -1:
         user.modify_dragon(dragon1)
-    print(f"You {won}! {dragon1.name} gained {exp_gain} exp.")
+    if dragon1.level == 3000:
+        print(f"You {won}! {dragon1.name} didn't gain any exp.")
+    else:
+        print(f"You {won}! {dragon1.name} gained {exp_gain} exp.")
     if won == "Lost":
         return False
     if won == "Won":
@@ -206,7 +209,7 @@ def boss3_start(dragon1, dragon1_move, dragon1_form, dragon2, dragon2_move, drag
         user.modify_dragon(dragon2)
     if err3 != -1:
         user.modify_dragon(dragon3)
-    print(f"You {won}! All of your dragons gained {exp_gain} exp.")
+    print(f"You {won}! All of your dragons gained {exp_gain} exp unless they were already max level.")
     if won == "Lost":
         return False
     if won == "Won":

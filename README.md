@@ -12,3 +12,7 @@ Run "Run.bat" to play the game. - executes "python main.py"
 Run "Fix Old Config"  to fix your old config. Before running this make sure you put the configs location in the config_loc.txt file. Putting "inthisfolder" will not work. That is just for if you do not have a config already and it uses the config in the folder. - executes "python oldfix.py"
 Run "Check Config Syntax" to check the config folder for correct syntax. - executes "python syntax.py"
 Run "Config Editor" to add new stuff to the config and change some settings. You can still do it the old fasion way, though wehave to admit this is a lot easier to use for most things (sadly it does not support story mode yet). - executes "python create.py"
+
+1.1.1 Patch Notes:
+- Fixed a bug when you were max level you could not get to the next boss/boss3 even if you won.
+- Fixed a bug where sometimes you would get exp when you lost to a boss/boss3 when you shouldn't.

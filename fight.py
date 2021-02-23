@@ -12,7 +12,6 @@ def start_fight(dragon1, dragon1_move, dragon1_form, dragon2, dragon2_move, drag
     if dragon2.boss:
         dragon2_hp = dragon2.level * dragon1.config_reader.bosshealth_multiplier * dragon2.prestige
     attacks_made = 0  # Gets the number of attacks made to calculate exp gained.
-    #print(f"Fight: {dragon1.name} vs. {dragon2.name}. Start!")
     if not dragon2.boss:
         print(f"Fight: \nDragon: {dragon1.name} Element: {dragon1.element} Level: {dragon1.level} Prestige {dragon1.prestige}\nvs.\nDragon: {dragon2.name} Element: {dragon2.element} Level: {dragon2.level} Prestige: {dragon2.prestige}. Start!")
     else:

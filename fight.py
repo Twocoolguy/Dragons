@@ -68,19 +68,28 @@ def start_fight(dragon1, dragon1_move, dragon1_form, dragon2, dragon2_move, drag
         won = "Won"
         exp_gain = exp_gain * 2
         if dragon2.boss and len(dragon1.config_reader.bosses) > dragon1.boss_number and not story:
-            dragon1.boss_number += 1
+            dragon1.boss_number = dragon1.boss_number + 1
             print("You can now go to the next boss fight!")
         elif dragon2.boss and not story:
             print("You have beaten all of the bosses. Congrats!")
     elif dragon2.boss and not story:
         print("You will need to beat this boss before continuing to the next one.")
-    err = dragon1.gain_exp(exp_gain)
+    err = None
+    if dragon2.boss and not story:
+        if won == "Won":
+            err = dragon1.gain_exp(exp_gain)
+        else:
+            exp_gain = 0.0
+    else:
+        err = dragon1.gain_exp(exp_gain)
     if err != -1:
         user.modify_dragon(dragon1)
     print(f"You {won}! {dragon1.name} gained {exp_gain} exp.")
     if won == "Lost":
         return False
     if won == "Won":
+        if dragon2.boss and len(dragon1.config_reader.bosses) > dragon1.boss_number and not story and err == -1:
+            user.modify_dragon(dragon1)
         return True
 
 
@@ -187,6 +196,7 @@ def boss3_start(dragon1, dragon1_move, dragon1_form, dragon2, dragon2_move, drag
         else:
             print("You have finished all of the boss3 bosses available to you at the moment.")
     else:
+        exp_gain = 0.0
         print("Since you lost, you will need to defeat this dragon boss3 before going to the next one.")
     err1 = dragon1.gain_exp(exp_gain)
     err2 = dragon2.gain_exp(exp_gain)
@@ -201,6 +211,12 @@ def boss3_start(dragon1, dragon1_move, dragon1_form, dragon2, dragon2_move, drag
     if won == "Lost":
         return False
     if won == "Won":
+        if len(dragon1.config_reader.bosses3) > dragon1.boss_number3 and err1 == -1:
+            user.modify_dragon(dragon1)
+        if len(dragon1.config_reader.bosses3) > dragon2.boss_number3 and err2 == -1:
+            user.modify_dragon(dragon2)
+        if len(dragon1.config_reader.bosses3) > dragon3.boss_number3 and err3 == -1:
+            user.modify_dragon(dragon3)
         return True
 
 

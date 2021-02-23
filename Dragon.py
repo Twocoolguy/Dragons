@@ -103,7 +103,7 @@ class Dragon:
         """Gains the dragon exp. Updates the dragon basically."""
         level = self.level
         if level >= 3000:
-            print(f"Your dragon is already the max level so it did not level up.")
+            print(f"Your dragon is already the max level so it did not level up. We recommend prestiging if you can do so.")
         while float(level) <= math.floor(0.1 * math.sqrt(self.exp + exp)):
             if level >= 3000:
                 break
@@ -111,7 +111,6 @@ class Dragon:
         times = level - self.level
         if times == 0:
             if level >= 3000:
-                print(f"Your dragon is already the max level so it did not level up. You should prestige if you can!")
                 return -1
             else:
                 print("Your dragon did not level up.")

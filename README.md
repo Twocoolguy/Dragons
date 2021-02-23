@@ -22,5 +22,7 @@ Run "Config Editor" to add new stuff to the config and change some settings. You
 - Removed some unused functions/comments from the GUI class.
 - Removed unused comment in fight.py
 - Fixed a bug where it would print basically the same thing twice when you were max level and won a match.
+- Fixed a bug where when your dragon was maxed and it won a fight that it gained exp when you literally couldn't have.
+
 
 This was a very small patch just mainly to fix some of the bigger issues that have been happening with the 1.1.0/1.0.0 release. There will be more patches like this in the future to fix bugs that need to be patched. Minor ones will be implemented into bigger releases (1.2.0, 1.3.0, etc.) while bigger issues will be patched in small releases (1.1.1, 1.1.2, etc). Thank you!

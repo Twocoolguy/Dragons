@@ -1,3 +1,3 @@
 @echo off
-python create.py
+py create.py
 pause

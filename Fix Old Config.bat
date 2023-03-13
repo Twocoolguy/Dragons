@@ -1,3 +1,3 @@
 @echo off
-py oldfix.py
+py bin/oldfix.py
 pause

@@ -1,3 +1,3 @@
 @echo off
-CALL py syntax.py
+CALL py bin/syntax.py
 pause
